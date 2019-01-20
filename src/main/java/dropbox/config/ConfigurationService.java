@@ -40,8 +40,4 @@ public class ConfigurationService {
     public String get(String key) {
         return properties.getProperty(key);
     }
-
-    public boolean getBoolin(String key) {
-        return true;
-    }
 }

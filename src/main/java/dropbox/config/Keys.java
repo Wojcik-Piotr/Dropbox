@@ -1,6 +1,6 @@
 package dropbox.config;
 
 public interface Keys {
-    String ACCESS_TOKEN= "";
-    String DIR="";
+    String DROPBOX_KEY= "dropbox.key";
+    String DIR="dairectory";
 }
