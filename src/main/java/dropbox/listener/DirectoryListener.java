@@ -8,10 +8,12 @@ import java.nio.file.*;
 public class DirectoryListener {
     private DropBoxUploader dropBoxUploader;
     private String dir;
+    private String accesToken;
 
-    public DirectoryListener(String dir, DropBoxUploader dropBoxUploader) {
+    public DirectoryListener(String dir, DropBoxUploader dropBoxUploader, String accesToken) {
         this.dropBoxUploader = dropBoxUploader;
         this.dir = dir;
+        this.accesToken = accesToken;
     }
 
     public void listener() throws IOException, InterruptedException {
@@ -27,7 +29,7 @@ public class DirectoryListener {
         while ((key = watchService.take()) != null) {
             String name = key.pollEvents().get(0).context().toString();
             System.out.println(name);
-            dropBoxUploader.upload(path.toString() + "\\" + name, name);
+            dropBoxUploader.upload(path.toString() + "\\" + name, name, accesToken;
             key.reset();
         }
     }
