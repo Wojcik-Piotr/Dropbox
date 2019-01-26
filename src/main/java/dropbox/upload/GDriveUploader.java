@@ -1,11 +1,7 @@
 package dropbox.upload;
 
-import com.google.api.client.http.FileContent;
-import com.google.api.services.drive.model.File;
-
-
 public class GDriveUploader implements Uploader {
-    private static final String CREDENTIALS_FILE_PATH=null;
+    private static final String CREDENTIALS_FILE_PATH = null;
     private final String CLIENT_ID = null;
     private final String CLIENT_SECRET = null;
 

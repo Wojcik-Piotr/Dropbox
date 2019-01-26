@@ -15,7 +15,7 @@ public class DirectoryListener {
         this.dir = dir;
     }
 
-    public void listener(){
+    public void listener() {
         try {
             WatchService watchService = FileSystems.getDefault().newWatchService();
 
@@ -32,7 +32,7 @@ public class DirectoryListener {
                 dropBoxUploader.upload(path.toString() + "\\" + name, name);
                 key.reset();
             }
-        }catch (IOException | InterruptedException e){
+        } catch (IOException | InterruptedException e) {
             throw new ListenerExepcion("Can not listen to directory", e);
         }
     }

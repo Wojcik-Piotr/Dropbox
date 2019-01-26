@@ -37,6 +37,16 @@
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.mailjet</groupId>
+            <artifactId>mailjet-client</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.3.0</version>
+        </dependency>
     </dependencies>
     <groupId>com.example</groupId>
     <artifactId>dropbox</artifactId>
