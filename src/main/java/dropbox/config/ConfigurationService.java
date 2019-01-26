@@ -19,10 +19,6 @@ public class ConfigurationService {
             input = new FileInputStream(path);
 
             properties.load(input);
-            /*
-            System.out.println(properties.getProperty("key"));
-            System.out.println(properties.getProperty("dir"));
-            */
 
         } catch (IOException ex) {
             ex.printStackTrace();

@@ -5,7 +5,7 @@ public class Emails {
     private String subject;
     private String contents;
 
-    public Emails(String address, String subject, String contents) {
+    Emails(String address, String subject, String contents) {
         this.address = address;
         this.subject = subject;
         this.contents = contents;

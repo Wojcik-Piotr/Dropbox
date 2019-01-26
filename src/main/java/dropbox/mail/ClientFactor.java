@@ -11,21 +11,20 @@ public class ClientFactor {
 
     private final ConfigurationService cfg;
 
-    public ClientFactor(ConfigurationService cfg) {
+    ClientFactor(ConfigurationService cfg) {
         this.cfg = cfg;
     }
 
-    public EmailClient createClient(){
+    EmailClient createClient() {
         String client = cfg.get(MAIL_CLIENT);
-        if(client.equals("mailjet")){
+        if (client.equals("mailjet")) {
             return new MailJet(cfg);
-        }else if(client.equals("sendgrid")){
+        } else if (client.equals("sendgrid")) {
             return new MySendGrid(cfg);
-        }else {
+        } else {
             throw new RuntimeException("No such client availabe");
         }
     }
-
 
 
 }

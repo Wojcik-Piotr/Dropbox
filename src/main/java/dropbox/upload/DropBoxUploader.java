@@ -3,25 +3,23 @@ package dropbox.upload;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
+import com.mailjet.client.errors.MailjetException;
+import com.mailjet.client.errors.MailjetSocketTimeoutException;
 import dropbox.config.ConfigurationService;
-import dropbox.mail.Emails;
-import dropbox.mail.EmailClient;
-
+import dropbox.mail.EmailService;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static dropbox.config.Keys.*;
+import static dropbox.config.Keys.DROPBOX_KEY;
 
 public class DropBoxUploader implements Uploader {
 
     private final ConfigurationService cfg;
-    private final EmailClient client;
 
-    public DropBoxUploader(ConfigurationService cfg, EmailClient client) {
+    public DropBoxUploader(ConfigurationService cfg) {
         this.cfg = cfg;
-        this.client=client;
     }
 
     public void upload(String path, String name) {
@@ -31,10 +29,11 @@ public class DropBoxUploader implements Uploader {
         try (InputStream in = new FileInputStream(path)) {
             dbClient.files().uploadBuilder("/" + name)
                     .uploadAndFinish(in);
-            String content = cfg.get(EMAIL_CONTENT)+", "+name;
-            client.send(new Emails(cfg.get(EMAIL_TO),cfg.get(EMAIL_SUBJECT),content));
+            new EmailService(cfg).sendMail(name);
         } catch (IOException | DbxException e) {
             throw new UploadExcepcion("File not found" + path, e);
+        } catch (MailjetSocketTimeoutException | MailjetException e) {
+            e.printStackTrace();
         }
     }
 }
